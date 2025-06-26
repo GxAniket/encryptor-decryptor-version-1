@@ -1,4 +1,4 @@
-# 🔐 Encryptor ⇄ Decryptor
+![file](https://github.com/user-attachments/assets/6bd88d24-d8bc-418b-be84-d8d39558b981)![menu](https://github.com/user-attachments/assets/647b3506-a64e-450e-b316-81c94ed912e0)![menu](https://github.com/user-attachments/assets/647b3506-a64e-450e-b316-81c94ed912e0)# 🔐 Encryptor ⇄ Decryptor
 
 A secure, browser-based application developed to help users protect their personal or sensitive files using strong encryption techniques. It allows you to encrypt any file using a password and later decrypt it only with the correct password.
 
@@ -35,21 +35,24 @@ A secure, browser-based application developed to help users protect their person
 ### 📌 `index.html` – Main Menu
 This is the landing page of the tool where users can choose between encryption, decryption, or reading instructions.
 
-![Index Page Screenshot](https://github.com/GxAniket/encryptor-decryptor/blob/main/index.png?raw=true)
+![Index Page Screenshot]
+![menu](https://github.com/user-attachments/assets/3d349fb8-70f1-4472-bfd2-702f8af3fbcc)
 
 ---
 
 ### 📌 `text.html` – Instructions / Text Page
 This page contains guidance or help text for users to understand how to use the tool.
 
-![Text Page Screenshot](https://github.com/GxAniket/encryptor-decryptor/blob/main/text.png?raw=true)
+![Text Page Screenshot]
+![text](https://github.com/user-attachments/assets/e4a4b64c-9a99-42fd-b063-a9834a532ccd)
 
 ---
 
 ### 📌 `encryptor.html` – Encryptor ⇄ Decryptor Tool
 The core functionality of the application. Here users can select a file, enter a password, and encrypt or decrypt securely in-browser.
 
-![Encryptor Tool Screenshot](https://github.com/GxAniket/encryptor-decryptor/blob/main/encryptor.png?raw=true)
+![Encryptor Tool Screenshot]
+![file](https://github.com/user-attachments/assets/6bd88d24-d8bc-418b-be84-d8d39558b981)
 
 ---
 
