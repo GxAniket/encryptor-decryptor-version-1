@@ -1,4 +1,4 @@
-![file](https://github.com/user-attachments/assets/6bd88d24-d8bc-418b-be84-d8d39558b981)![menu](https://github.com/user-attachments/assets/647b3506-a64e-450e-b316-81c94ed912e0)![menu](https://github.com/user-attachments/assets/647b3506-a64e-450e-b316-81c94ed912e0)# 🔐 Encryptor ⇄ Decryptor
+ 🔐 Encryptor ⇄ Decryptor
 
 A secure, browser-based application developed to help users protect their personal or sensitive files using strong encryption techniques. It allows you to encrypt any file using a password and later decrypt it only with the correct password.
 
