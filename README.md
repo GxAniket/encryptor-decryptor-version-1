@@ -36,9 +36,10 @@ A secure, browser-based application developed to help users protect their person
 This is the landing page of the tool where users can choose between encryption, decryption, or reading instructions.
 
 ![Index Page Screenshot]
-![menu](https://github.com/user-attachments/assets/3d349fb8-70f1-4472-bfd2-702f8af3fbcc)
+![menu]![menu (2)](https://github.com/user-attachments/assets/6ea7d832-e805-41fc-985d-e09c1532aebf)
 
 ---
+
 
 ### 📌 `text.html` – Instructions / Text Page
 This page contains guidance or help text for users to understand how to use the tool.
