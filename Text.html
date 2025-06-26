@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encryptor-Decrpytor</title>
+  <link rel="icon" type="image/x-icon" href="image/lock-picture.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('image/NEW.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-color: rgb(148, 144, 144); /* fallback */
+      border-radius: 15px;
+      margin: 0;
+      padding-top: 80px;
+    }
+
+    .header {
+      background-color: #070707;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 28px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: none;
+      border: 3px solid #9146ff;
+      box-shadow: 0 0 10px #9146ff;
+      font-size: 22px;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      gap: 10px;
+      padding: 6px 12px;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      color: lightskyblue;
+      background-color: rgba(145, 70, 255, 0.1);
+      border: 3px solid #3df3f0;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #9146ff, 0 0 20px #9146ff;
+    }
+
+    .container {
+      text-align: center;
+      width: 100%;
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    img {
+      width: 350px;
+      border-radius: 30px;
+      height: 100%;
+      box-shadow: #070707 0px 0px 30px;
+      display: block;
+      margin: 40px auto;
+    }
+
+    textarea, input[type="text"], input[type="number"] {
+      width: 100%;
+      margin: 10px;
+      padding: 10px;
+      background-color: #fcfcfc;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: black 20px 20px 100px;
+      box-sizing: 100%;
+    }
+
+    textarea {
+      height: 50px;
+      resize: none;
+    }
+
+    input[type="number"] {
+      width: 150px;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .encrypt-btn, .decrypt-btn {
+      flex: 1;
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      color: rgb(7, 0, 0);
+    }
+
+    .encrypt-btn {
+      background-color: #4CAF50;
+    }
+
+    .encrypt-btn:hover {
+      background-color: #09ef4e;
+      box-shadow: #e42222 0px 0px 15px;
+    }
+
+    .decrypt-btn {
+      background-color: #ec6473;
+    }
+
+    .decrypt-btn:hover {
+      background-color: #e21717;
+      box-shadow: #34f72d 0px 0px 15px;
+    }
+
+    #about {
+      padding: 10px 20px;
+      background-color: #000000ae;
+      text-align: center;
+      font-size: 18px;
+      color: #ffffff;
+      margin-top: 40px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <b>Encryptor Text - Decryptor Text</b>
+  </div>
+
+  <!-- Back Button -->
+  <button class="back-button" onclick="history.back()">☜ Back</button>
+
+  <!-- Main Content -->
+  <div class="container">
+    <img src="image/kk.jpg" alt="Encryptor Logo" />
+    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+    <input type="number" id="shift" value="2" placeholder="Shift Key (e.g. 3)" />
+
+    <div class="buttons">
+      <button class="encrypt-btn" onclick="encrypt()">Encrypt</button>
+      <button class="decrypt-btn" onclick="decrypt()">Decrypt</button>
+    </div>
+
+    <textarea id="outputText" placeholder="Result will appear here..." readonly></textarea>
+  </div>
+
+  <div id="about">
+    <h2>About Encryptor - Decryptor</h2>
+    <p>The Text Encryptor - Decryptor is a secure web-based utility that allows users to encrypt and decrypt text using a custom password (key).</p>
+    <p>This ensures that your message remains private and can only be accessed by someone who knows the correct key.</p>
+  </div>
+
+  <script>
+    function encrypt() {
+      const text = document.getElementById("inputText").value;
+      const shift = parseInt(document.getElementById("shift").value);
+      let result = "";
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char.match(/[a-z]/i)) {
+          const code = text.charCodeAt(i);
+          let shiftedCode;
+          if (code >= 65 && code <= 90) {
+            shiftedCode = ((code - 65 + shift) % 26) + 65;
+          } else if (code >= 97 && code <= 122) {
+            shiftedCode = ((code - 97 + shift) % 26) + 97;
+          }
+          result += String.fromCharCode(shiftedCode);
+        } else {
+          result += char;
+        }
+      }
+
+      document.getElementById("outputText").value = result;
+    }
+
+    function decrypt() {
+      const text = document.getElementById("inputText").value;
+      const shift = parseInt(document.getElementById("shift").value);
+      let result = "";
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char.match(/[a-z]/i)) {
+          const code = text.charCodeAt(i);
+          let shiftedCode;
+          if (code >= 65 && code <= 90) {
+            shiftedCode = ((code - 65 - shift + 26) % 26) + 65;
+          } else if (code >= 97 && code <= 122) {
+            shiftedCode = ((code - 97 - shift + 26) % 26) + 97;
+          }
+          result += String.fromCharCode(shiftedCode);
+        } else {
+          result += char;
+        }
+      }
+
+      document.getElementById("outputText").value = result;
+    }
+  </script>
+</body>
+</html>

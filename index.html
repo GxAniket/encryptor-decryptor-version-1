@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encryptor - Decryptor</title>
+  <link rel="icon" type="image/x-icon" href=\image\lock-picture.png>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Enables smooth scrolling */
+    }
+
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4; /* fallback color */
+    background-image: url('image/NEW.png'); /* relative path */
+    background-size: cover;           /* scales image to fill the screen */
+    background-repeat: no-repeat;     /* avoids repeating the image */
+    background-position: center;      /* centers the image */
+    }
+    /* HEADER */
+    .header {
+      background-color: #070707;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 28px;
+      position: relative;
+    }
+
+    /* MENU BUTTON */
+    .menu-toggle {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: none;
+      border: 3px solid #9146ff; /* vibrant violet */
+      box-shadow: 0 0 20px #9146ff; /* glowing border */
+      border-radius: 15px;
+      font-size: 22px;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 5px 10px;
+      transition: background 0.3s;
+    }
+
+    .menu-toggle:hover {
+      color: #82e0f6;
+      border: 3px solid #0be728;
+      box-shadow: 0 0 20px #08e451;
+      background-color: rgba(122, 27, 27, 0.1);
+      border-radius: 5px;
+    }
+
+    /* SIDE MENU */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 150px;
+      background-color: #2726269a;
+      color: rgb(14, 14, 14);
+      padding-top: 80px;
+      transition: left 0.4s ease;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    .side-menu.open {
+      left: 0px; /* Slide in from the left */
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 15px 30px;
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+      border-bottom: 1px solid #040000;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .side-menu a:hover {
+      background-color: #0c0c0ca1;
+      box-shadow: 0 0 20px #67e390;
+      transform: translateX(5px);
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .logo img {
+     max-width: 300px; /* Ensured responsiveness */
+     height: auto; /* Maintain aspect ratio */
+     margin-bottom: 40px; /* Increased margin */
+     box-shadow: 0 0 20px #00090a;
+     border-radius: 8px; /* Slightly rounded corners for logo */
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      border-radius: 8px;
+      flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+      margin-top: 30px;
+    }
+    
+    .nav-buttons a {
+      padding: 15px 30px;
+      background-color: #00060b;
+      color: white;
+      border-radius: 8px;
+      box-shadow:0 0 20px#28d4da;
+      border: 4px solid #9146ff; /* vibrant violet */
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .nav-buttons a:hover {
+     background-color: #00090a;
+     color: #88f682;
+     transform: translateX(5px);
+     border-radius: 30px; /* more curved shape */
+     box-shadow: 0 0 20px #9146ff;
+    }
+
+    /* ABOUT SECTION */
+    #about {
+      padding: 60px 20px;
+      background-color: #0a010196;
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+      color: #ffffff;
+    }
+
+    /* FOOTER */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 10px 0;
+      font-size:14px;
+    }
+
+    .footer a {
+      color: #e0e0e0;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .side-menu::-webkit-scrollbar {
+      width: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰ <span>Menu</span></button>
+
+<!-- Side Menu -->
+<div class="side-menu" id="sideMenu">
+  <a href="Index.html"><b>Home</b></a>
+  <a href="Text.html"><b>Text</b></a>
+  <a href="encryptor.html"><b>files</b></a>
+  <a href="https://github.com/GxAniket" target="_blank"><b>Github</b></a>
+  <a href="#about" onclick="toggleMenu()"><b>About</b></a> <!-- Scrolls to #about -->
+</div>
+
+  <!-- Header -->
+  <div class="header">
+    <b>Encryptor - Decryptor</b>
+  </div>
+
+  <!-- Main Section -->
+  <div class="main">
+    <div class="logo">
+      <img src="image/ED.png" alt="Encryptor Logo">
+    </div>
+
+    <div class="nav-buttons">
+      <a href="Text.html"><b>Encrypt Text</b></a>
+      <a href="encryptor.html"><b>Encrypt Any File</b></a>
+    </div>
+  </div>
+  
+  <div id="about">
+        <h2>About Encryptor - Decryptor</h2>
+        <p>This tool provides a secure and easy way to encrypt and decrypt your sensitive text and files. Whether you need to protect private messages or secure important documents.</p>
+        <p>our solution ensures your data remains confidential.</p>
+        <p>Choose between text encryption for quick messages or file encryption for larger documents. We are committed to providing robust and user-friendly encryption services.</p>
+    </div>
+
+  <!-- Footer -->
+<footer style="text-align: center; padding: 10px; color: white;">
+  <p>
+    Made with ❤️ by Aniket Sundriyal |
+    <a href="https://github.com/GxAniket" target="_blank" style="color: lightskyblue; text-decoration: underline;">
+      Click here for GitHub
+    </a>
+  </p>
+</footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      menu.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
