@@ -26,7 +26,7 @@ A secure, browser-based application developed to help users protect their person
 
 ## 🌐 Live Demo
 
-👉 [Try the App Here](https://gxaniket.github.io/encryptor-decryptor/)
+👉 [Try the App Here](https://gxaniket.github.io/encryptor-decryptor-version-1/)
 
 ---
 
