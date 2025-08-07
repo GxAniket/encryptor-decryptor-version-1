@@ -1,87 +1,121 @@
- 🔐 Encryptor ⇄ Decryptor
+<h1 align="center">🔐 Encryptor ⇄ Decryptor — Secure Your Files in Browser</h1>
 
-A secure, browser-based application developed to help users protect their personal or sensitive files using strong encryption techniques. It allows you to encrypt any file using a password and later decrypt it only with the correct password.
-
----
-
-## 📜 Features
-
-- 🔒 Secure client-side encryption and decryption (no data is uploaded to any server)
-- 🔑 Password-protected using modern cryptographic methods
-- 📁 Works with all file types
-- 💡 Easy to use UI with clear steps
-- 🌐 Works in modern browsers without installation
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=435&lines=Client-Side+File+Encryption;Secure+%26+Offline+Web+Tool;Built+by+Aniket+Sundriyal" alt="Typing animation" />
+</p>
 
 ---
 
-## 📂 Project Structure
+## 📦 Overview
 
-| File Name         | Description                                      |
-|------------------|---------------------------------------------------|
-| `index.html`      | Main landing page with navigation menu           | 
-| `encryptor.html`  | Core encryption and decryption functionality     |
-| `text.html`       | Additional text/instructions or notes            |
+**Encryptor ⇄ Decryptor** is a browser-based encryption tool that helps you secure any file using modern cryptographic methods — completely offline.  
+Built with **Vanilla JS** and **Web Crypto API**, it provides a clean UI and strong **AES-GCM encryption** for all file types.
 
 ---
 
-## 🌐 Live Demo
+## ✨ Features
 
-👉 [Try the App Here](https://gxaniket.github.io/encryptor-decryptor-version-1/)
-
----
-
-## 🖼️ Screenshots & Page Overview
-
-### 📌 `index.html` – Main Menu
-This is the landing page of the tool where users can choose between encryption, decryption, or reading instructions.
-
-![Index Page Screenshot]
-![menu]![menu (2)](https://github.com/user-attachments/assets/6ea7d832-e805-41fc-985d-e09c1532aebf)
+- 🔒 Client-side encryption & decryption — **no server involved**
+- 🛡️ AES-GCM encryption with password protection
+- 📁 Works with **any file format** (images, docs, zips, etc.)
+- ⚡ Fully offline & instant – no installations or uploads
+- 🎯 Easy-to-use interface with helpful instructions
+- 🌐 Compatible with modern browsers (Chrome, Firefox, Edge)
 
 ---
 
+## 🚀 Live Demo
 
-### 📌 `text.html` – Instructions / Text Page
-This page contains guidance or help text for users to understand how to use the tool.
+> 👉 [Try the App Here](https://gxaniket.github.io/encryptor-decryptor-version-1/)  
+> 🔗 No setup required — just open & use in your browser.
 
-![Text Page Screenshot]
+---
+
+## 🧩 Project Structure
+
+<pre>
+encryptor-decryptor/
+├── index.html         ← Landing page with navigation
+├── encryptor.html     ← Core encryption/decryption logic
+├── text.html          ← Instructions & user help
+└── README.md
+</pre>
+
+---
+
+## 🖼️ Screenshots
+
+### 📌 Main Menu – `index.html`
+
+Choose your action: Encrypt, Decrypt, or Instructions.
+
+![menu](https://github.com/user-attachments/assets/6ea7d832-e805-41fc-985d-e09c1532aebf)
+
+---
+
+### 📌 Instruction Page – `text.html`
+
+A help page that guides users through each step.
+
 ![text](https://github.com/user-attachments/assets/e4a4b64c-9a99-42fd-b063-a9834a532ccd)
 
 ---
 
-### 📌 `encryptor.html` – Encryptor ⇄ Decryptor Tool
-The core functionality of the application. Here users can select a file, enter a password, and encrypt or decrypt securely in-browser.
+### 📌 Tool in Action – `encryptor.html`
 
-![Encryptor Tool Screenshot]
+Select your file → Enter password → Encrypt/Decrypt securely.
+
 ![file](https://github.com/user-attachments/assets/6bd88d24-d8bc-418b-be84-d8d39558b981)
 
 ---
 
-## 📌 Optional Extended Description
+## ⚙️ Tech Stack
 
-> This project was built as a lightweight, offline-capable alternative to online file encryption tools. The goal was to explore cryptographic methods using the Web Crypto API and demonstrate how JavaScript can be used to perform secure file operations directly in the browser.  
-> It’s especially useful for students, developers, or users looking for basic file security without any backend/server.
-
----
-
-## 🛠 Tech Stack
-
-- HTML5
-- CSS3 (inline and internal)
-- JavaScript (Vanilla)
-- Web Crypto API (AES-GCM encryption)
+| Purpose             | Tools / Technologies       |
+|---------------------|----------------------------|
+| Frontend UI         | HTML5 + CSS3               |
+| Core Functionality  | JavaScript (Vanilla)       |
+| Cryptography        | Web Crypto API (AES-GCM)   |
+| Hosting             | GitHub Pages               |
+| Editor              | VS Code                    |
 
 ---
 
-## 📃 License
+## 🧾 Extended Use Case
 
-This project is open-source and available under the [MIT License](LICENSE).
+> This project was built as a privacy-first tool for users who want **quick encryption without backend dependencies**.  
+> Ideal for students, developers, or anyone needing a **simple and secure file locker** without installing software.
 
 ---
 
-## 👤 Author
+## 🙌 Author
 
-**Aniket Sundriyal**  
-📧 [Contact on GitHub](https://github.com/GxAniket)
+- Made with 💙 by **Aniket Sundriyal**
+
+<p align="center">
+  <a href="https://github.com/GxAniket">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <a href="mailto:sundriyalaniket@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/aniket-sundriyal">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+</p>
+
+---
+
+## 💬 Let’s Connect!
+
+If you like the project, don’t forget to ⭐ star it — that motivates me to keep building cool stuff!  
+Have feedback or suggestions? Connect on LinkedIn or raise an issue.
+
+---
+
+## 🧾 License
+
+This project is open-source and available under the [MIT License](LICENSE).  
+Feel free to fork, improve, and build upon it — attribution is appreciated 💙
 
 ---
