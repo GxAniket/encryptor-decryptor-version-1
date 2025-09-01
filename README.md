@@ -24,13 +24,6 @@ Built with **Vanilla JS** and **Web Crypto API**, it provides a clean UI and str
 
 ---
 
-## 🚀 Live Demo
-
-> 👉 [Try the App Here](https://gxaniket.github.io/encryptor-decryptor-version-1/)  
-> 🔗 No setup required — just open & use in your browser.
-
----
-
 ## 🧩 Project Structure
 
 <pre>
@@ -66,6 +59,14 @@ A help page that guides users through each step.
 Select your file → Enter password → Encrypt/Decrypt securely.
 
 ![file](https://github.com/user-attachments/assets/6bd88d24-d8bc-418b-be84-d8d39558b981)
+
+---
+
+
+## 🚀 Live Demo
+
+> 👉 [Try the App Here](https://gxaniket.github.io/encryptor-decryptor-version-1/)  
+> 🔗 No setup required — just open & use in your browser.
 
 ---
 
