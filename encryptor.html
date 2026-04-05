@@ -1,241 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>File Encryptor ⇄ Decryptor</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Encryptor ⇄ Decryptor</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --accent: #3b82f6;
+        --text: #f1f5f9;
+      }
+      * {
+        box-sizing: border-box;
+        font-family: ui-rounded, "Segoe UI", system-ui, sans-serif;
+      }
+      .header {
+      background-color: #070707;
+      color: white;
+      text-align: center;
+      padding: 18px 0;
+      font-size: 25px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+      body {
+        margin: auto;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: var(--bg) url('image/NEW.png') no-repeat center center fixed;
+        background-size: cover;
+        color: var(--text);
+        padding-top: 60px;
+      }
+      .card {
+        width: min(90vw, 480px);
+        background: var(--surface);
+        border-radius: 1.5rem;
+        margin-top: 80px;
+        padding: 10px 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0 0 1.5rem;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-block: 0.75rem 0.20rem;
+        font-size: 0.9rem;
+      }
+      input[type="file"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--accent);
+        border-radius: 0.75rem;
+        background: var(--bg);
+        color: var(--text);
+      }
+      .btn-row {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      button {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 0.75rem;
+        background: var(--accent);
+        color: var(--text);
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+      }
+      button:hover {
+        transform: translateY(-2px);
+      }
+      button:disabled {
+        background: #64748b;
+        cursor: not-allowed;
+      }
+      .status {
+        margin-top: 1rem;
+        min-height: 1.25rem;
+        text-align: center;
+        font-size: 0.875rem;
+      }
 
-<style>
-:root {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --accent: #3b82f6;
-  --text: #f1f5f9;
-}
+      .back-button {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: black;
+        border: 3px solid #9146ff;
+        box-shadow: 0 0 10px #9146ff;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        gap: 10px;
+        padding: 6px 12px;
+        transition: all 0.3s ease;
+      }
 
-/* Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: ui-rounded, "Segoe UI", system-ui;
-}
+      .back-button:hover {
+        color: lightskyblue;
+        background-color: rgba(145, 70, 255, 0.1);
+        border: 3px solid #3df3f0;
+        background: black;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #9146ff, 0 0 20px #9146ff;
+      }
 
-/* Body */
-body {
-  min-height: 100vh;
-  background: var(--bg) url('image/NEW.png') no-repeat center;
-  background-size: cover;
-  color: var(--text);
-  padding-top: 70px;
-}
+      .about {
+       padding: 10px 20px;
+      background-color: #000000ae;
+      text-align: center;
+      font-size: 18px;
+      color: #ffffff;
+      margin-top: 8%;
+      }
 
-/* Header */
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: black;
-  text-align: center;
-  padding: 12px;
-  font-size: 18px;
-  z-index: 999;
-}
+    </style>
+  </head>
+  <body>
 
-/* Back Button */
-.back-button {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  background: black;
-  border: 2px solid #9146ff;
-  color: white;
-  border-radius: 10px;
-  padding: 6px 10px;
-  font-size: 14px;
-}
+    <!-- Header -->
+  <div class="header">
+    <b>Encryptor files - Decryptor files</b>
+  </div>
 
-/* Card */
-.card {
-  width: 90%;
-  max-width: 420px;
-  margin: 20px auto;
-  background: rgba(30, 41, 59, 0.95);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
+    <!-- Back Button -->
+    <button class="back-button" onclick="history.back()">☜ Back</button>
 
-/* Heading */
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 20px;
-}
+    <!-- Main UI -->
+    <main class="card">
+      <h1>File Encryptor ⇄ Decryptor</h1>
 
-/* Inputs */
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: 2px solid var(--accent);
-  background: var(--bg);
-  color: white;
-}
+      <label for="fileInput">Choose file</label>
+      <input id="fileInput" type="file" />
 
-/* Buttons */
-.btn-row {
-  display: flex;
-  gap: 10px;
-}
+      <label for="passwordInput">Password (min 8 chars)</label>
+      <input id="passwordInput" type="password" autocomplete="new-password" minlength="8" />
 
-button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: var(--accent);
-  color: white;
-  font-weight: bold;
-}
+      <div class="btn-row">
+        <button id="encryptBtn">Encrypt 📁🔒</button>
+        <button id="decryptBtn">Decrypt 📂🔑</button>
+      </div>
 
-/* Status */
-.status {
-  text-align: center;
-  margin-top: 10px;
-}
+      <div id="status" class="status"></div>
+    </main>
 
-/* About */
-.about {
-  margin: 20px;
-  padding: 15px;
-  background: rgba(0,0,0,0.7);
-  border-radius: 10px;
-  text-align: center;
-  font-size: 14px;
-}
+    <!-- About Section -->
+    <div class="about">
+      <h2 style="margin-bottom: 0.5rem;">About This Tool</h2>
+      <p>
+        The <strong>File Encryptor ⇄ Decryptor</strong> is a secure, browser-based application developed to help users protect their personal or sensitive files through strong encryption techniques. It allows you to encrypt any file using a password and later decrypt it only with the correct password.
+      </p>
+      <p>
+      All encryption and decryption processes are handled entirely on your device. <strong>No data is uploaded or stored anywhere</strong>, making this tool completely private and secure.
+      </p>
+    </div>
 
-/* Mobile Fix */
-@media (max-width: 768px) {
-  .btn-row {
-    flex-direction: column;
-  }
+    <!-- JavaScript -->
+    <script>
+      const enc = new TextEncoder();
+      const dec = new TextDecoder();
 
-  h1 {
-    font-size: 18px;
-  }
-}
-</style>
-</head>
+      const toB64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
+      const fromB64 = (str) => Uint8Array.from(atob(str), (c) => c.charCodeAt(0));
 
-<body>
+      function download(data, filename, mime = "application/octet-stream") {
+        const blob = new Blob([data], { type: mime });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
 
-<div class="header">Encryptor ⇄ Decryptor</div>
+      async function deriveKey(password, salt) {
+        const baseKey = await crypto.subtle.importKey(
+          "raw",
+          enc.encode(password),
+          { name: "PBKDF2" },
+          false,
+          ["deriveKey"]
+        );
+        return crypto.subtle.deriveKey(
+          {
+            name: "PBKDF2",
+            salt,
+            iterations: 250000,
+            hash: "SHA-256",
+          },
+          baseKey,
+          { name: "AES-GCM", length: 256 },
+          false,
+          ["encrypt", "decrypt"]
+        );
+      }
 
-<button class="back-button" onclick="history.back()">← Back</button>
+      async function encryptFile(file, password) {
+        const fileData = await file.arrayBuffer();
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        const key = await deriveKey(password, salt);
+        const cipherBuffer = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, fileData);
+        const payload = JSON.stringify({
+          name: file.name,
+          salt: toB64(salt),
+          iv: toB64(iv),
+          data: toB64(cipherBuffer),
+        });
+        download(payload, file.name + ".enc", "text/plain");
+      }
 
-<main class="card">
-<h1>File Encryptor ⇄ Decryptor</h1>
+      async function decryptFile(file, password) {
+        const text = await file.text();
+        let payload;
+        try {
+          payload = JSON.parse(text);
+        } catch (_) {
+          throw new Error("Not a valid .enc file");
+        }
 
-<label>Choose file</label>
-<input type="file" id="fileInput" />
+        const { name, salt, iv, data } = payload;
+        const saltBuf = fromB64(salt);
+        const ivBuf = fromB64(iv);
+        const cipherBuf = fromB64(data);
+        const key = await deriveKey(password, saltBuf);
+        let plainBuffer;
+        try {
+          plainBuffer = await crypto.subtle.decrypt({ name: "AES-GCM", iv: ivBuf }, key, cipherBuf);
+        } catch (e) {
+          throw new Error("Wrong password or corrupted file");
+        }
+        download(plainBuffer, name);
+      }
 
-<label>Password</label>
-<input type="password" id="passwordInput" minlength="8" />
+      const fileInput = document.getElementById("fileInput");
+      const passwordInput = document.getElementById("passwordInput");
+      const encryptBtn = document.getElementById("encryptBtn");
+      const decryptBtn = document.getElementById("decryptBtn");
+      const status = document.getElementById("status");
 
-<div class="btn-row">
-<button id="encryptBtn">Encrypt 🔒</button>
-<button id="decryptBtn">Decrypt 🔓</button>
-</div>
+      function setStatus(msg, error = false) {
+        status.textContent = msg;
+        status.style.color = error ? "#f87171" : "#38bdf8";
+      }
 
-<div id="status" class="status"></div>
-</main>
+      encryptBtn.addEventListener("click", async () => {
+        const file = fileInput.files[0];
+        const pwd = passwordInput.value;
+        if (!file || pwd.length < 8) return setStatus("Choose a file & 8-char password", true);
+        setStatus("Encrypting… please wait");
+        encryptBtn.disabled = decryptBtn.disabled = true;
+        try {
+          await encryptFile(file, pwd);
+          setStatus("Encrypted & downloaded ✔️");
+        } catch (e) {
+          console.error(e);
+          setStatus(e.message, true);
+        } finally {
+          encryptBtn.disabled = decryptBtn.disabled = false;
+        }
+      });
 
-<div class="about">
-<h2>About</h2>
-<p>This tool encrypts and decrypts files securely in your browser. No data is uploaded.</p>
-</div>
-
-<script>
-const enc = new TextEncoder();
-const toB64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
-const fromB64 = (str) => Uint8Array.from(atob(str), c => c.charCodeAt(0));
-
-function download(data, name) {
-  const blob = new Blob([data]);
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  a.click();
-}
-
-async function deriveKey(password, salt) {
-  const keyMaterial = await crypto.subtle.importKey(
-    "raw", new TextEncoder().encode(password), {name:"PBKDF2"}, false, ["deriveKey"]
-  );
-
-  return crypto.subtle.deriveKey({
-    name:"PBKDF2",
-    salt,
-    iterations:250000,
-    hash:"SHA-256"
-  }, keyMaterial, {name:"AES-GCM", length:256}, false, ["encrypt","decrypt"]);
-}
-
-async function encryptFile(file, password) {
-  const data = await file.arrayBuffer();
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const key = await deriveKey(password, salt);
-
-  const encrypted = await crypto.subtle.encrypt({name:"AES-GCM", iv}, key, data);
-
-  const payload = JSON.stringify({
-    name:file.name,
-    salt:toB64(salt),
-    iv:toB64(iv),
-    data:toB64(encrypted)
-  });
-
-  download(payload, file.name + ".enc");
-}
-
-async function decryptFile(file, password) {
-  const text = await file.text();
-  const payload = JSON.parse(text);
-
-  const key = await deriveKey(password, fromB64(payload.salt));
-  const decrypted = await crypto.subtle.decrypt(
-    {name:"AES-GCM", iv:fromB64(payload.iv)},
-    key,
-    fromB64(payload.data)
-  );
-
-  download(decrypted, payload.name);
-}
-
-const fileInput = document.getElementById("fileInput");
-const passwordInput = document.getElementById("passwordInput");
-const encryptBtn = document.getElementById("encryptBtn");
-const decryptBtn = document.getElementById("decryptBtn");
-const status = document.getElementById("status");
-
-encryptBtn.onclick = async () => {
-  const file = fileInput.files[0];
-  if (!file) return alert("Select file");
-  await encryptFile(file, passwordInput.value);
-  status.innerText = "Encrypted ✔️";
-};
-
-decryptBtn.onclick = async () => {
-  const file = fileInput.files[0];
-  if (!file) return alert("Select file");
-  await decryptFile(file, passwordInput.value);
-  status.innerText = "Decrypted ✔️";
-};
-</script>
-
-</body>
+      decryptBtn.addEventListener("click", async () => {
+        const file = fileInput.files[0];
+        const pwd = passwordInput.value;
+        if (!file || pwd.length < 8) return setStatus("Choose a .enc file & 8-char password", true);
+        setStatus("Decrypting… please wait");
+        encryptBtn.disabled = decryptBtn.disabled = true;
+        try {
+          await decryptFile(file, pwd);
+          setStatus("Decrypted & downloaded ✔️");
+        } catch (e) {
+          console.error(e);
+          setStatus(e.message, true);
+        } finally {
+          encryptBtn.disabled = decryptBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
 </html>
