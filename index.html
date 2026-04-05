@@ -9,10 +9,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  font-family: 'Segoe UI', sans-serif;
   background: url('image/NEW.png') no-repeat center;
   background-size: cover;
   color: white;
@@ -20,27 +24,31 @@ body {
 
 /* HEADER */
 .header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: black;
+  background-color: #070707;
+  color: white;
   text-align: center;
-  padding: 12px;
-  font-size: 20px;
+  padding: 18px 0;
+  font-size: 25px;
+  position: fixed;
+  width: 100%;
+  top: 0;
   z-index: 999;
 }
 
 /* MENU BUTTON */
 .menu-toggle {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 12px;
   background: black;
-  border: 2px solid #9146ff;
-  border-radius: 10px;
+  border: 3px solid #9146ff;
+  box-shadow: 0 0 15px #9146ff;
+  border-radius: 12px;
+  font-size: 18px;
   color: white;
-  padding: 5px 10px;
+  cursor: pointer;
   z-index: 1001;
+  padding: 5px 10px;
 }
 
 /* SIDE MENU */
@@ -48,11 +56,11 @@ body {
   position: fixed;
   top: 0;
   left: -220px;
-  width: 220px;
   height: 100%;
-  background: rgba(0,0,0,0.9);
-  padding-top: 70px;
-  transition: 0.3s;
+  width: 200px;
+  background-color: rgba(0,0,0,0.85);
+  padding-top: 80px;
+  transition: 0.4s;
   z-index: 1000;
 }
 
@@ -62,85 +70,112 @@ body {
 
 .side-menu a {
   display: block;
-  padding: 15px;
+  padding: 15px 20px;
   color: white;
   text-decoration: none;
-  border-bottom: 1px solid #333;
+  font-size: 18px;
+  border-bottom: 1px solid #111;
 }
 
 .side-menu a:hover {
-  background: #111;
+  background: rgba(255,255,255,0.1);
 }
 
 /* MAIN */
 .main {
   text-align: center;
-  padding: 90px 20px 40px;
+  padding: 120px 20px 60px;
 }
 
 /* LOGO */
 .logo img {
-  width: 90%;
   max-width: 280px;
-  border-radius: 10px;
+  width: 90%;
+  height: auto;
+  margin-bottom: 30px;
   box-shadow: 0 0 20px black;
+  border-radius: 10px;
 }
 
 /* BUTTONS */
 .nav-buttons {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .nav-buttons a {
-  padding: 12px 20px;
-  background: black;
-  border: 2px solid #9146ff;
-  border-radius: 10px;
+  padding: 12px 25px;
+  background-color: #000;
   color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #28d4da;
+  border: 3px solid #9146ff;
   text-decoration: none;
+  font-size: 16px;
   transition: 0.3s;
 }
 
 .nav-buttons a:hover {
-  background: #111;
+  background-color: #000;
+  color: #88f682;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #9146ff;
 }
 
-/* ABOUT */
+/* ABOUT (FIXED BUT SAME STYLE) */
 #about {
-  padding: 30px 15px;
-  background: rgba(0,0,0,0.7);
+  padding: 50px 20px;
+  background-color: rgba(0,0,0,0.6);
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
+  margin-top: 40px;
+  color: white;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 10px;
-  font-size: 13px;
+  padding: 12px;
+  color: white;
 }
 
 /* 📱 MOBILE FIX */
 @media (max-width: 768px) {
-  .nav-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-buttons a {
-    width: 80%;
-  }
 
   .header {
-    font-size: 18px;
+    font-size: 20px;
+    padding: 12px;
   }
 
   .menu-toggle {
     font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .main {
+    padding: 100px 15px 40px;
+  }
+
+  .logo img {
+    max-width: 220px;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-buttons a {
+    width: 80%;
+    margin: auto;
+  }
+
+  #about {
+    font-size: 14px;
+    padding: 30px 15px;
   }
 }
 </style>
@@ -151,7 +186,7 @@ footer {
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
 <div class="side-menu" id="sideMenu">
-  <a href="Text.html">Encrypt Text</a>
+  <a href="Text.html">Encryptor Text</a>
   <a href="encryptor.html">File Encryption</a>
   <a href="https://github.com/GxAniket" target="_blank">Github</a>
   <a href="#about" onclick="toggleMenu()">About</a>
@@ -173,8 +208,10 @@ footer {
 </div>
 
 <div id="about">
-  <h2>About</h2>
-  <p>This tool helps you encrypt and decrypt files and text securely.</p>
+  <h2>About Encryptor - Decryptor</h2>
+  <p>This tool provides a secure and easy way to encrypt and decrypt your sensitive text and files.</p>
+  <p>Whether you need to protect private messages or secure important documents.</p>
+  <p>Our solution ensures your data remains confidential.</p>
 </div>
 
 <footer>
