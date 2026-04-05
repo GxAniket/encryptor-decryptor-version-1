@@ -21,8 +21,10 @@ body {
 .header {
   background-color: #070707;
   color: white;
-  text-align: center;
-  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
   font-size: clamp(16px, 4vw, 26px);
   position: fixed;
   top: 0;
@@ -31,23 +33,23 @@ body {
   z-index: 999;
 }
 
-/* BACK BUTTON */
+/* BACK BUTTON FIXED */
 .back-button {
-  position: fixed;
-  top: 70px;
+  position: absolute;
   left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: 3px solid #9146ff;
   box-shadow: 0 0 10px #9146ff;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   cursor: pointer;
-  z-index: 1001;
+  border-radius: 10px;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
-  border-radius: 10px;
   gap: 6px;
-  padding: 5px 10px;
 }
 
 .back-button:hover {
@@ -120,23 +122,28 @@ input[type="number"] {
   background-color: #ec6473;
 }
 
-/* ABOUT (ORIGINAL RESTORED) */
+/* ABOUT */
 #about {
-  padding: 50px 20px;
+  padding: 40px 15px;
   background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   color: white;
-  margin-top: 40px;
+  margin-top: 30px;
   line-height: 1.6;
 }
 
 /* MOBILE FIX */
 @media (max-width: 768px) {
 
+  .header {
+    font-size: 16px;
+    padding: 10px;
+  }
+
   .back-button {
-    top: 65px;
-    font-size: 14px;
+    font-size: 12px;
+    padding: 4px 8px;
   }
 
   .buttons {
@@ -156,11 +163,11 @@ input[type="number"] {
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
+  <button class="back-button" onclick="history.back()">← Back</button>
   <b>Encryptor Text - Decryptor Text</b>
 </div>
-
-<button class="back-button" onclick="history.back()">← Back</button>
 
 <div class="container">
   <img src="image/kk.jpg" alt="Encryptor Logo" />
@@ -177,7 +184,7 @@ input[type="number"] {
   <textarea id="outputText" placeholder="Result will appear here..." readonly></textarea>
 </div>
 
-<!-- ABOUT (FULL ORIGINAL TEXT RESTORED) -->
+<!-- ABOUT -->
 <div id="about">
   <h2>About Encryptor - Decryptor</h2>
   <p>
