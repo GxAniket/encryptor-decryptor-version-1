@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>File Encryptor ⇄ Decryptor</title>
+    
+    <!-- Tab Favicon -->
+    <link rel="icon" type="image/png" href="image/icon.png">
+
     <style>
       :root {
         --bg: #0f172a;
@@ -12,170 +16,261 @@
         --accent: #3b82f6;
         --text: #f1f5f9;
       }
+
       * {
         box-sizing: border-box;
-        font-family: ui-rounded, "Segoe UI", system-ui, sans-serif;
-      }
-      .header {
-      background-color: #070707;
-      color: white;
-      text-align: center;
-      padding: 18px 0;
-      font-size: 25px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-    }
-      body {
-        margin: auto;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background-image: url('image/NEW.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        color: var(--text);
-        padding-top: 60px;
-      }
-      .card {
-        width: min(90vw, 480px);
-        background: var(--surface);
-        border-radius: 1.5rem;
-        margin-top: 80px;
-        padding: 10px 20px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-      }
-      h1 {
-        font-size: 1.5rem;
-        margin: 0 0 1.5rem;
-        text-align: center;
-      }
-      label {
-        display: block;
-        margin-block: 0.75rem 0.20rem;
-        font-size: 0.9rem;
-      }
-      input[type="file"],
-      input[type="password"] {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 2px solid var(--accent);
-        border-radius: 0.75rem;
-        background: var(--bg);
-        color: var(--text);
-      }
-      .btn-row {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-      button {
-        flex: 1;
-        padding: 0.75rem 1rem;
-        border: none;
-        border-radius: 0.75rem;
-        background: var(--accent);
-        color: var(--text);
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s ease;
-      }
-      button:hover {
-        transform: translateY(-2px);
-      }
-      button:disabled {
-        background: #64748b;
-        cursor: not-allowed;
-      }
-      .status {
-        margin-top: 1rem;
-        min-height: 1.25rem;
-        text-align: center;
-        font-size: 0.875rem;
+        margin: 0;
+        padding: 0;
       }
 
-      .back-button {
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        background: black;
-        border: 3px solid #9146ff;
-        box-shadow: 0 0 10px #9146ff;
-        font-size: 20px;
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: url('image/NEW.png') no-repeat center center fixed;
+        background-size: cover;
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding-top: 80px; /* Space for fixed header */
+      }
+
+      /* --- 1. HEADER FIX (FLEXBOX NO-OVERLAP) --- */
+      .header {
+        background-color: #070707;
         color: white;
-        cursor: pointer;
-        z-index: 1001;
         display: flex;
         align-items: center;
-        border-radius: 15px;
-        gap: 10px;
-        padding: 6px 12px;
+        justify-content: space-between; /* Pushes items apart */
+        padding: 12px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        min-height: 64px;
+        border-bottom: 1px solid rgba(145, 70, 255, 0.3);
+      }
+
+      /* Back button ab absolute nahi hai, isliye overlap nahi karega */
+      .back-button {
+        background: black;
+        border: 2px solid #9146ff;
+        box-shadow: 0 0 10px #9146ff;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+        gap: 6px;
+        padding: 6px 15px;
         transition: all 0.3s ease;
+        white-space: nowrap; /* Txt line break na ho */
       }
 
       .back-button:hover {
         color: lightskyblue;
         background-color: rgba(145, 70, 255, 0.1);
-        border: 3px solid #3df3f0;
-        background: black;
-        border-radius: 5px;
-        box-shadow: 0 0 10px #9146ff, 0 0 20px #9146ff;
+        border: 2px solid #3df3f0;
+        box-shadow: 0 0 15px #9146ff;
+        transform: scale(1.05);
       }
 
+      .header-title {
+        flex: 1;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        padding-right: 80px; /* Back button ke size ko balance karta hai taaki text center me rahe */
+      }
+
+      /* --- 2. MAIN CARD UI --- */
+      .card-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: 20px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 480px;
+        background: var(--surface);
+        border-radius: 1.5rem;
+        padding: 30px 25px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin: 0 0 1.5rem;
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-block: 0.75rem 0.3rem;
+        font-size: 0.95rem;
+      }
+
+      input[type="file"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid var(--accent);
+        border-radius: 0.75rem;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 1rem;
+        outline: none;
+        transition: box-shadow 0.3s ease;
+      }
+
+      input[type="file"]:focus,
+      input[type="password"]:focus {
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+      }
+
+      /* --- BUTTONS --- */
+      .btn-row {
+        display: flex;
+        gap: 15px;
+        margin-top: 1.5rem;
+      }
+
+      button.action-btn {
+        flex: 1;
+        padding: 0.85rem 1rem;
+        border: none;
+        border-radius: 0.75rem;
+        background: var(--accent);
+        color: var(--text);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+
+      button.action-btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+      }
+
+      button.action-btn:disabled {
+        background: #64748b;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .status {
+        margin-top: 1.2rem;
+        min-height: 1.25rem;
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      /* --- ABOUT SECTION --- */
       .about {
-       padding: 10px 20px;
-      background-color: #000000ae;
-      text-align: center;
-      font-size: 18px;
-      color: #ffffff;
-      margin-top: 8%;
+        padding: 40px 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        font-size: 16px;
+        color: #ffffff;
+        width: 100%;
+        line-height: 1.6;
+      }
+      
+      .about h2 {
+        margin-bottom: 15px;
+      }
+      
+      .about p {
+        max-width: 800px;
+        margin: 0 auto 10px;
       }
 
+      /* --- 📱 MOBILE RESPONSIVENESS (PERFECT FIT) --- */
+      @media (max-width: 768px) {
+        .header {
+          padding: 12px 15px;
+        }
+
+        .header-title {
+          font-size: 16px; /* Smaller text for mobile */
+          padding-right: 0;
+          text-align: right; /* Pushes text away from back button */
+        }
+
+        .back-button {
+          font-size: 13px;
+          padding: 6px 10px;
+        }
+
+        .card {
+          padding: 25px 15px;
+        }
+
+        /* Stack buttons on small screens */
+        .btn-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        button.action-btn {
+          width: 100%;
+          padding: 1rem;
+        }
+      }
     </style>
   </head>
   <body>
 
-    <!-- Header -->
-  <div class="header">
-    <b>Encryptor files - Decryptor files</b>
-  </div>
-
-    <!-- Back Button -->
-    <button class="back-button" onclick="history.back()">☜ Back</button>
+    <!-- Header (Updated HTML structure for Flexbox fix) -->
+    <div class="header">
+      <button class="back-button" onclick="history.back()">☜ Back</button>
+      <div class="header-title"><b>Encryptor files - Decryptor files</b></div>
+    </div>
 
     <!-- Main UI -->
-    <main class="card">
-      <h1>File Encryptor ⇄ Decryptor</h1>
+    <div class="card-container">
+      <main class="card">
+        <h1>File Encryptor ⇄ Decryptor</h1>
 
-      <label for="fileInput">Choose file</label>
-      <input id="fileInput" type="file" />
+        <label for="fileInput">Choose file</label>
+        <input id="fileInput" type="file" />
 
-      <label for="passwordInput">Password (min 8 chars)</label>
-      <input id="passwordInput" type="password" autocomplete="new-password" minlength="8" />
+        <label for="passwordInput">Password (min 8 chars)</label>
+        <input id="passwordInput" type="password" autocomplete="new-password" minlength="8" />
 
-      <div class="btn-row">
-        <button id="encryptBtn">Encrypt 📁🔒</button>
-        <button id="decryptBtn">Decrypt 📂🔑</button>
-      </div>
+        <div class="btn-row">
+          <button id="encryptBtn" class="action-btn">Encrypt 📁🔒</button>
+          <button id="decryptBtn" class="action-btn">Decrypt 📂🔑</button>
+        </div>
 
-      <div id="status" class="status"></div>
-    </main>
+        <div id="status" class="status"></div>
+      </main>
+    </div>
 
-    <!-- About Section -->
+    <!-- About Section (Unchanged) -->
     <div class="about">
-      <h2 style="margin-bottom: 0.5rem;">About This Tool</h2>
+      <h2>About This Tool</h2>
       <p>
         The <strong>File Encryptor ⇄ Decryptor</strong> is a secure, browser-based application developed to help users protect their personal or sensitive files through strong encryption techniques. It allows you to encrypt any file using a password and later decrypt it only with the correct password.
       </p>
       <p>
-      All encryption and decryption processes are handled entirely on your device. <strong>No data is uploaded or stored anywhere</strong>, making this tool completely private and secure.
+        All encryption and decryption processes are handled entirely on your device. <strong>No data is uploaded or stored anywhere</strong>, making this tool completely private and secure.
       </p>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (Unchanged logic) -->
     <script>
       const enc = new TextEncoder();
       const dec = new TextDecoder();
