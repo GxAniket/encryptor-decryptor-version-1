@@ -3,115 +3,152 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Encryptor-Decrpytor</title>
+<title>Encryptor - Decryptor</title>
+
+<!-- Tab par aapka icon (Favicon) show karne ke liye -->
+<link rel="icon" type="image/png" href="image/icon.png">
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background-image: url('image/NEW.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-color: rgb(148, 144, 144);
+/* --- RESET & CLEAN CODE --- */
+* {
   margin: 0;
-  padding-top: 70px;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* HEADER */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Horizontal scroll block */
+}
+
+/* --- ZOOM FIX & FULL HEIGHT LAYOUT --- */
+body {
+  font-family: Arial, sans-serif;
+  background: url('image/NEW.png') no-repeat center center fixed; /* Fixed prevents zoom distortion */
+  background-size: cover;
+  background-color: rgb(148, 144, 144);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px; /* Space for fixed header */
+}
+
+/* --- HEADER FIX (No overlap) --- */
 .header {
   background-color: #070707;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  font-size: clamp(16px, 4vw, 26px);
+  padding: 15px 80px; /* Left & Right padding taaki Back button overlap na kare */
+  font-size: clamp(16px, 4vw, 24px);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
+  min-height: 64px;
 }
 
 /* BACK BUTTON FIXED */
 .back-button {
   position: absolute;
-  left: 10px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: black;
   border: 3px solid #9146ff;
   box-shadow: 0 0 10px #9146ff;
   font-size: 14px;
   color: white;
   cursor: pointer;
   border-radius: 10px;
-  padding: 5px 10px;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
+  transition: all 0.3s ease;
 }
 
 .back-button:hover {
   color: lightskyblue;
   background-color: rgba(145, 70, 255, 0.1);
+  transform: translateY(-50%) scale(1.05);
 }
 
-/* CONTAINER */
+/* --- CONTAINER & ALIGNMENT --- */
 .container {
   text-align: center;
   width: 100%;
-  padding: 20px;
-  max-width: 500px;
+  max-width: 600px; /* Thoda bada for laptop view */
   margin: 0 auto;
+  padding: 20px;
+  flex: 1; /* Pushes the About section exactly to the bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* IMAGE */
 img {
   width: 90%;
-  max-width: 300px;
+  max-width: 280px;
   border-radius: 20px;
   box-shadow: #070707 0px 0px 20px;
-  margin: 30px auto;
+  margin: 20px auto 30px;
   display: block;
 }
 
-/* INPUT */
+/* --- INPUTS & TEXTAREA --- */
 textarea, input[type="text"], input[type="number"] {
   width: 100%;
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px;
   background-color: #fcfcfc;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 10px;
   font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #000;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus, input[type="number"]:focus {
+  border-color: #9146ff; /* Focus border for premium feel */
 }
 
 textarea {
-  height: 60px;
-  resize: none;
+  min-height: 80px;
+  resize: vertical; /* User height change kar sakta hai agar text lamba ho */
 }
 
 input[type="number"] {
-  width: 120px;
+  width: 140px;
   text-align: center;
+  font-weight: bold;
 }
 
-/* BUTTONS */
+/* --- BUTTONS --- */
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  width: 100%;
   flex-wrap: wrap;
+  margin: 10px 0 20px;
 }
 
 .encrypt-btn, .decrypt-btn {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
+  font-weight: bold;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   color: black;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .encrypt-btn {
@@ -122,40 +159,51 @@ input[type="number"] {
   background-color: #ec6473;
 }
 
-/* ABOUT */
+.encrypt-btn:hover, .decrypt-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1); /* Subtle hover effect */
+}
+
+/* --- ABOUT SECTION (Content exactly as requested) --- */
 #about {
-  padding: 40px 15px;
+  padding: 40px 20px;
   background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
   font-size: 15px;
   color: white;
-  margin-top: 30px;
+  width: 100%;
   line-height: 1.6;
 }
 
-/* MOBILE FIX */
-@media (max-width: 768px) {
+#about h2 {
+  margin-bottom: 15px;
+}
 
+#about p {
+  max-width: 800px;
+  margin: 0 auto 10px;
+}
+
+/* --- 📱 MOBILE RESPONSIVENESS FIX --- */
+@media (max-width: 768px) {
   .header {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 18px;
+    padding: 15px 15px 15px 85px; /* Keeps text safe from back button */
+    justify-content: flex-start;
   }
 
   .back-button {
-    font-size: 12px;
-    padding: 4px 8px;
+    font-size: 13px;
+    padding: 5px 10px;
   }
 
   .buttons {
     flex-direction: column;
+    gap: 12px;
   }
 
   .encrypt-btn, .decrypt-btn {
     width: 100%;
-  }
-
-  textarea {
-    height: 50px;
   }
 }
 </style>
@@ -184,7 +232,7 @@ input[type="number"] {
   <textarea id="outputText" placeholder="Result will appear here..." readonly></textarea>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT (Text unchanged) -->
 <div id="about">
   <h2>About Encryptor - Decryptor</h2>
   <p>
@@ -196,6 +244,7 @@ input[type="number"] {
 </div>
 
 <script>
+// --- CORE FUNCTIONALITY (Unchanged) ---
 function encrypt() {
   const text = document.getElementById("inputText").value;
   const shift = parseInt(document.getElementById("shift").value);
