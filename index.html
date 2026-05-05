@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Encryptor - Decryptor</title>
 
+<link rel="icon" type="image/png" href="image/icon.png">
+
 <style>
+
 * {
   margin: 0;
   padding: 0;
@@ -13,16 +17,21 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-padding-top: 90px; 
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: url('image/NEW.png') no-repeat center;
+  background: url('image/NEW.png') no-repeat center center fixed;
   background-size: cover;
   color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* HEADER */
+/* --- HEADER --- */
 .header {
   background-color: #070707;
   color: white;
@@ -32,14 +41,15 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
+  left: 0;
   z-index: 999;
+  min-height: 64px;
 }
 
-/* MENU BUTTON */
 .menu-toggle {
   position: fixed;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 15px;
   background: black;
   border: 3px solid #9146ff;
   box-shadow: 0 0 15px #9146ff;
@@ -49,19 +59,25 @@ body {
   cursor: pointer;
   z-index: 1001;
   padding: 5px 10px;
+  transition: 0.3s ease;
 }
 
-/* SIDE MENU */
+.menu-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* --- SIDE MENU & HOVER EFFECT --- */
 .side-menu {
   position: fixed;
   top: 0;
-  left: -220px;
+  left: -250px;
   height: 100%;
-  width: 200px;
+  width: 250px;
   background-color: rgba(0,0,0,0.85);
   padding-top: 80px;
-  transition: 0.4s;
+  transition: 0.4s ease-in-out;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 .side-menu.open {
@@ -75,19 +91,34 @@ body {
   text-decoration: none;
   font-size: 18px;
   border-bottom: 1px solid #111;
+  transition: all 0.3s ease;
 }
 
 .side-menu a:hover {
   background: rgba(255,255,255,0.1);
+  padding-left: 28px;
+  color: #28d4da;
 }
 
-/* MAIN */
+/* --- MAIN LAYOUT & ZOOM EFFECT --- */
+@keyframes mainZoomIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 .main {
   text-align: center;
   padding: 120px 20px 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: mainZoomIn 0.6s ease-out;
 }
 
-/* LOGO */
 .logo img {
   max-width: 280px;
   width: 90%;
@@ -95,15 +126,21 @@ body {
   margin-bottom: 30px;
   box-shadow: 0 0 20px black;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-/* BUTTONS */
+.logo img:hover {
+  transform: scale(1.03);
+}
+
+/* --- BUTTONS --- */
 .nav-buttons {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
   margin-top: 20px;
+  width: 100%;
 }
 
 .nav-buttons a {
@@ -116,6 +153,7 @@ body {
   text-decoration: none;
   font-size: 16px;
   transition: 0.3s;
+  min-width: 180px;
 }
 
 .nav-buttons a:hover {
@@ -125,7 +163,7 @@ body {
   box-shadow: 0 0 20px #9146ff;
 }
 
-/* ABOUT (FIXED BUT SAME STYLE) */
+/* --- ABOUT SECTION & TARGET ZOOM EFFECT --- */
 #about {
   padding: 50px 20px;
   background-color: rgba(0,0,0,0.6);
@@ -133,26 +171,52 @@ body {
   font-size: 16px;
   margin-top: 40px;
   color: white;
+  width: 100%;
+  transition: all 0.5s ease;
+  border-radius: 10px;
 }
 
-/* FOOTER */
+#about p {
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+#about:target {
+  animation: aboutHighlight 1s ease-out;
+}
+
+@keyframes aboutHighlight {
+  0% { transform: scale(1); box-shadow: 0 0 0 transparent; }
+  50% { transform: scale(1.02); box-shadow: 0 0 20px #9146ff; background-color: rgba(0,0,0,0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 0 transparent; }
+}
+
+/* --- FOOTER --- */
 footer {
   text-align: center;
-  padding: 12px;
+  padding: 15px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+footer a {
   color: white;
 }
 
-/* 📱 MOBILE FIX */
+/* --- 📱 MOBILE RESPONSIVENESS FIX --- */
 @media (max-width: 768px) {
-
   .header {
     font-size: 20px;
-    padding: 12px;
+    padding: 18px 15px 18px 100px;
+    text-align: left;
+    white-space: nowrap;
   }
 
   .menu-toggle {
     font-size: 14px;
-    padding: 4px 8px;
+    padding: 6px 10px;
+    top: 15px;
   }
 
   .main {
@@ -165,17 +229,19 @@ footer {
 
   .nav-buttons {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    align-items: center;
   }
 
   .nav-buttons a {
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   #about {
     font-size: 14px;
-    padding: 30px 15px;
+    padding: 40px 15px;
   }
 }
 </style>
@@ -188,8 +254,9 @@ footer {
 <div class="side-menu" id="sideMenu">
   <a href="Text.html">Encryptor Text</a>
   <a href="encryptor.html">File Encryption</a>
+  <a href="https://aniket-portfolio-react.vercel.app/" target="_blank">Portfolio</a>
   <a href="https://github.com/GxAniket" target="_blank">Github</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#about" onclick="toggleMenu()">About</a> 
 </div>
 
 <div class="header">
@@ -198,7 +265,7 @@ footer {
 
 <div class="main">
   <div class="logo">
-    <img src="image/ED.png">
+    <img src="image/ED.png" alt="Logo">
   </div>
 
   <div class="nav-buttons">
