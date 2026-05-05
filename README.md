@@ -92,8 +92,12 @@ Select your file → Enter password → Encrypt/Decrypt securely.
 ## 🙌 Author
 
 - Made with 💙 by **Aniket Sundriyal**
+- 🌐 **Portfolio:** [Visit My Website](https://aniket-portfolio-react.vercel.app/)
 
 <p align="center">
+  <a href="https://aniket-portfolio-react.vercel.app/">
+    <img src="https://img.shields.io/badge/Portfolio-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  </a>
   <a href="https://github.com/GxAniket">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
   </a>
